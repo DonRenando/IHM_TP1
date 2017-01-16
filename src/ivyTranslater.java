@@ -5,10 +5,10 @@ import fr.dgac.ivy.IvyMessageListener;
 
 class ivyTranslater implements IvyMessageListener {
 
-    private Ivy bus;
+    private final Ivy bus;
     private String argument;
 
-    public ivyTranslater() throws IvyException {
+    ivyTranslater() throws IvyException {
         // initialization, name and ready message
         bus = new Ivy("IvyTranslater", "Geste", null);
         // classical subscription
@@ -22,7 +22,7 @@ class ivyTranslater implements IvyMessageListener {
     }
 
     // callback associated to the "Hello" messages"
-    public void recevoire(MonPanel panel) throws IvyException {
+    void recevoire(MonPanel panel) throws IvyException {
         panel.stroke = new Stroke();
         bus.bindMsg("^coord=(.*)", (client, args) -> {
             if (args[0] != null) {
@@ -42,7 +42,7 @@ class ivyTranslater implements IvyMessageListener {
         });
     }
 
-    public void sendMsg(String msg) {
+    void sendMsg(String msg) {
         try {
             bus.sendMsg(msg);
         } catch (IvyException e) {

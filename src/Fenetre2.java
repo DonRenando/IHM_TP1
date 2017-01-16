@@ -5,14 +5,13 @@ import javax.swing.*;
 /**
  * Created by renando on 16/01/17.
  */
-public class Fenetre2 extends JFrame {
-    public ivyTranslater monIvy;
-    private MonPanel panel;
+class Fenetre2 extends JFrame {
+    private ivyTranslater monIvy;
 
-    public Fenetre2(MonPanel panel) {
+    Fenetre2(MonPanel panel) {
         super("IHM fenetre 2");
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
-        this.panel = panel;
+        MonPanel panel1 = panel;
         panel.stroke = new Stroke();
         this.add(panel);
 

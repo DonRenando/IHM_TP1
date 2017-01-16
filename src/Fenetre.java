@@ -8,17 +8,16 @@ import java.awt.event.MouseMotionListener;
 /**
  * Created by renando on 16/01/17.
  */
-public class Fenetre extends JFrame {
-    private MonPanel panel;
+class Fenetre extends JFrame {
     private ivyTranslater monIvy;
 
     //private Automate a;
 
 
-    public Fenetre(MonPanel panel) {
+    Fenetre(MonPanel panel) {
         super("IHM TP Lines");
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
-        this.panel = panel;
+        MonPanel panel1 = panel;
         this.add(panel);
         try {
             this.monIvy = new ivyTranslater();
@@ -27,34 +26,38 @@ public class Fenetre extends JFrame {
         }
         panel.addMouseListener(new MouseListener() {
             @Override
-            public void mouseClicked(MouseEvent mouseEvent) {}
+            public void mouseClicked(MouseEvent mouseEvent) {
+            }
 
 
             @Override
             public void mousePressed(MouseEvent mouseEvent) {
-                if (SwingUtilities.isLeftMouseButton (mouseEvent))
-                panel.getStroke().addPoint(mouseEvent.getX(), mouseEvent.getY());
+                if (SwingUtilities.isLeftMouseButton(mouseEvent))
+                    panel.getStroke().addPoint(mouseEvent.getX(), mouseEvent.getY());
                 panel.stroke = new Stroke();
             }
 
             @Override
             public void mouseReleased(MouseEvent mouseEvent) {
-                monIvy.sendMsg("coord="+panel.getStroke().toString());
+                monIvy.sendMsg("coord=" + panel.getStroke().toString());
             }
 
 
             @Override
-            public void mouseEntered(MouseEvent mouseEvent) {}
+            public void mouseEntered(MouseEvent mouseEvent) {
+            }
 
             @Override
-            public void mouseExited(MouseEvent mouseEvent) {}
+            public void mouseExited(MouseEvent mouseEvent) {
+            }
         });
 
         panel.addMouseMotionListener(new MouseMotionListener() {
 
             @Override
             public void mouseDragged(MouseEvent mouseEvent) {
-                if (SwingUtilities.isLeftMouseButton (mouseEvent)) panel.getStroke().addPoint(mouseEvent.getX(), mouseEvent.getY());
+                if (SwingUtilities.isLeftMouseButton(mouseEvent))
+                    panel.getStroke().addPoint(mouseEvent.getX(), mouseEvent.getY());
                 panel.repaint();
 
             }
@@ -66,7 +69,7 @@ public class Fenetre extends JFrame {
         });
 
 
-        setSize(600,600);
+        setSize(600, 600);
         setVisible(true);
 
 

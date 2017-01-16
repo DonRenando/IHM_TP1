@@ -1,12 +1,12 @@
 /**
  * Created by renando on 16/01/17.
  */
-public class Main {
+class Main {
     public static void main(String[] args) {
 
-        MonPanel panel= new MonPanel();
-        Fenetre frame = new Fenetre(panel);
+        MonPanel panel = new MonPanel();
+        new Fenetre(panel);
         MonPanel panel2 = new MonPanel();
-        Fenetre2 frame2 = new Fenetre2(panel2);
+        new Fenetre2(panel2);
     }
 }

@@ -5,12 +5,12 @@ import java.awt.geom.Point2D;
 /**
  * Created by renando on 16/01/17.
  */
-public class MonPanel extends JComponent{
+public class MonPanel extends JComponent {
 
 
+    public Stroke stroke;
 
-    public  Stroke stroke;
-    public MonPanel(){
+    public MonPanel() {
         super();
         stroke = new Stroke();
     }
@@ -18,12 +18,12 @@ public class MonPanel extends JComponent{
     @Override
     protected void paintComponent(Graphics graphics) {
         super.paintComponent(graphics);
-        Graphics2D g2 = (Graphics2D)graphics;
+        Graphics2D g2 = (Graphics2D) graphics;
 
-        for (Point2D.Double p: stroke.getPoints()) {
-            int x = (int)p.getX();
-            int y = (int)p.getY();
-            g2.drawOval(x,y,2,2);
+        for (Point2D.Double p : stroke.getPoints()) {
+            int x = (int) p.getX();
+            int y = (int) p.getY();
+            g2.drawOval(x, y, 2, 2);
 
         }
 

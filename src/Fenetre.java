@@ -17,7 +17,7 @@ public class Fenetre extends JFrame {
 
     public Fenetre(MonPanel panel) {
         super("IHM TP Lines");
-        this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+        this.setDefaultCloseOperation(EXIT_ON_CLOSE);
         this.panel = panel;
         this.add(panel);
         try {
@@ -61,7 +61,6 @@ public class Fenetre extends JFrame {
 
             @Override
             public void mouseMoved(MouseEvent mouseEvent) {
-               // a.mouvSouris(mouseEvent.getX(), mouseEvent.getY());
             }
 
         });
@@ -69,6 +68,8 @@ public class Fenetre extends JFrame {
 
         setSize(600,600);
         setVisible(true);
+
+
     }
 
 

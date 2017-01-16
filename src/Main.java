@@ -6,5 +6,7 @@ public class Main {
 
         MonPanel panel= new MonPanel();
         Fenetre frame = new Fenetre(panel);
+        MonPanel panel2 = new MonPanel();
+        Fenetre2 frame2 = new Fenetre2(panel2);
     }
 }

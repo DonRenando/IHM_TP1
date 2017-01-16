@@ -1,14 +1,18 @@
-import fr.dgac.ivy.* ;
+import fr.dgac.ivy.Ivy;
+import fr.dgac.ivy.IvyClient;
+import fr.dgac.ivy.IvyException;
+import fr.dgac.ivy.IvyMessageListener;
 
 class ivyTranslater implements IvyMessageListener {
 
     private Ivy bus;
+    private String argument;
 
     public ivyTranslater() throws IvyException {
         // initialization, name and ready message
-        bus = new Ivy("IvyTranslater","IvyTranslater Ready", null);
+        bus = new Ivy("IvyTranslater", "Geste", null);
         // classical subscription
-        bus.bindMsg("sra5 Parsed=(.*) Confidence",this);
+        bus.bindMsg("sra5 Parsed=(.*) Confidence", this);
         // inner class subscription ( think awt )
         bus.bindMsg("^Bye$", (client, args) -> {
             // leaves the bus, and as it is the only thread, quits
@@ -18,18 +22,36 @@ class ivyTranslater implements IvyMessageListener {
     }
 
     // callback associated to the "Hello" messages"
-    public void receive(IvyClient client, String[] args) {
+    public void recevoire(MonPanel panel) throws IvyException {
+        panel.stroke = new Stroke();
+        bus.bindMsg("^coord=(.*)", (client, args) -> {
+            if (args[0] != null) {
+                panel.stroke = new Stroke();
+                String[] listeCoor = args[0].split(";");
+                String x;
+                String y;
+                for (String coor : listeCoor) {
+                    x = coor.split(",")[0].replace(".0", "");
+                    y = coor.split(",")[1].replace(".0", "");
+                    panel.getStroke().addPoint(Integer.parseInt(x), Integer.parseInt(y));
+                }
+                panel.repaint();
 
-            System.out.println(args[0]);
+
+            }
+        });
     }
 
-    public void sendMsg(String msg){
+    public void sendMsg(String msg) {
         try {
             bus.sendMsg(msg);
-            System.out.println(msg);
         } catch (IvyException e) {
             e.printStackTrace();
         }
     }
 
+    @Override
+    public void receive(IvyClient ivyClient, String[] strings) {
+
+    }
 }
